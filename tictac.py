@@ -19,6 +19,7 @@ def display_board(board):
 	print(board[1] + '|' + board[2] + '|' + board[3])
 
 test_board = ['#','X','O','X','X','X','O','X','O','X']
+test_board = ['#',' ',' ',' ',' ',' ',' ',' ',' ',' ']
 
 display_board(test_board)
 
@@ -39,14 +40,19 @@ def player_input():
 	        
 	return (p1_mark, p2_mark)
 
-p1, p2 = player_input()
-
+p1, p2 = player_input() # TESTING
 
 def place_marker(board, marker, position):
 	'''
 	Write a function that takes in the board list object, a marker ('X' or 'O'), and a desired position (number 1-9) and assigns it to the board.
 	'''
+	board[position] = marker
+	return board
 	pass
+
+place_marker(test_board,p1,1) # TESTING
+place_marker(test_board,p2,5) # TESTING
+display_board(test_board) # TESTING
 
 def choose_first():
 	'''
@@ -58,17 +64,30 @@ def space_check(board, position):
 	'''
 	Write a function that returns a boolean indicating whether a space on the board is freely available
 	'''
+	space = False
+	if board[position] == ' ':
+		space = True
+	return space
 	pass
+
+print(space_check(test_board, 1))
+print(space_check(test_board, 8))
 
 def full_board_check(board):
 	'''
 	Write a function that checks if the board is full and returns a boolean value. True if full, False otherwise.
 	'''
+	is_full = True
+	if ' ' in board:
+		is_full = False
+	return is_full
 	pass
+
+print(full_board_check(test_board))
 
 def player_choice(board):
 	'''
-	Write a function that asks for a player's next position (as a number 1-9) and then uses the function from step 6 to check if it's a free position. If it is, then return the position for later use.
+	Write a function that asks for a player's next position (as a number 1-9) and then uses the function space_check to check if it's a free position. If it is, then return the position for later use.
 	'''
 	pass
 
@@ -76,14 +95,28 @@ def replay():
 	'''
 	Write a function that asks the player if they want to play again and returns a boolean True if they do want to play again.
 	'''
+	replay = ''
+	while replay != 'Y' and replay != 'N':
+		replay = input('Want to play again? Y or N: ')
+
+		if replay == 'Y':
+			return True
+		else:
+			return False
+
+replay() # TESTING
+
 
 # Game starts below
 
 print('Welcome to Tic Tac Toe!')
 
+board = ['#',' ',' ',' ',' ',' ',' ',' ',' ',' ']
+
 #while True:
     # Set the game up here
     #pass
+    #p1, p2 = player_input()
 
     #while game_on:
         #Player 1 Turn
